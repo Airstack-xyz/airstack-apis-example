@@ -1,4 +1,5 @@
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client/core"
+import { TokenBalancesOutput } from "./types/generated"
 
 const AIRSTACK_ENDPOINT = "https://api.airstack.xyz/gql"
 const AIRSTACK_API_KEY = ""
@@ -10,7 +11,15 @@ const client = new ApolloClient({
     headers: { Authorization: AIRSTACK_API_KEY },
 })
 
-async function GetAllNFTs(owners: string[], limit: number, cursor: string): Promise<any> {
+interface TokenBalancesOutputWrapper {
+    TokenBalances: TokenBalancesOutput
+}
+
+async function GetAllNFTs(
+    owners: string[],
+    limit: number,
+    cursor: string
+): Promise<TokenBalancesOutput> {
     const query = gql`
         query MyQuery($cursor: String, $owners: [Identity!], $limit: Int) {
             TokenBalances(
@@ -25,6 +34,7 @@ async function GetAllNFTs(owners: string[], limit: number, cursor: string): Prom
                     tokenAddress
                     amount
                     tokenType
+                    tokenId
                     owner {
                         primaryDomain {
                             name
@@ -39,7 +49,7 @@ async function GetAllNFTs(owners: string[], limit: number, cursor: string): Prom
         }
     `
 
-    const response = await client.query({
+    const response = await client.query<TokenBalancesOutputWrapper>({
         query,
         variables: {
             owners: owners,
@@ -56,11 +66,14 @@ const main = async () => {
     let limit = 10
     let cursor = ""
     let tokenBalances = await GetAllNFTs(owners, limit, cursor)
-    tokenBalances.TokenBalance.forEach((tokenBalance: any) => {
-        console.log(tokenBalance)
+    tokenBalances.TokenBalance!.forEach((tokenBalance) => {
+        console.log(
+            `${tokenBalance.owner.primaryDomain!.name} owns address:${
+                tokenBalance.tokenAddress
+            } id: ${tokenBalance.tokenId} amount ${tokenBalance.amount} type: ${
+                tokenBalance.tokenType
+            }`
+        )
     })
-    // cursors
-    console.log(`prevCursor: ${tokenBalances.pageInfo.prevCursor}`)
-    console.log(`nextCursor: ${tokenBalances.pageInfo.nextCursor}`)
 }
 main()
