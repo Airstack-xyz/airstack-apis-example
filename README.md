@@ -11,4 +11,4 @@ Starter code to interact with Airstack API
 ```
 
 
-To build with Graphql Types, check code in this [branch](https://github.com/Airstack-xyz/airstack-apis-example/tree/advanced)
+To build with Graphql Typescript Types, check code in this [branch](https://github.com/Airstack-xyz/airstack-apis-example/tree/advanced)
