@@ -1,0 +1,11 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore compiled JavaScript files
+dist/
+
+# Ignore TypeScript declaration files
+*.d.ts
+
+# Ignore Visual Studio Code configuration files
+.vscode/
