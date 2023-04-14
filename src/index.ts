@@ -72,8 +72,12 @@ const main = async () => {
                 tokenBalance.tokenAddress
             } id: ${tokenBalance.tokenId} amount ${tokenBalance.amount} type: ${
                 tokenBalance.tokenType
-            }`
+            } \n`
         )
     })
+    // pagination
+    console.log(
+        `prevCursor: ${tokenBalances.pageInfo?.prevCursor} \nnextCursor: ${tokenBalances.pageInfo?.nextCursor}`
+    )
 }
 main()
