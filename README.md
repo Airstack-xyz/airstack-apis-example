@@ -9,3 +9,6 @@ Starter code to interact with Airstack API
   npm install
   npm run start
 ```
+
+
+To build with Graphql Types, check code in this [branch](https://github.com/Airstack-xyz/airstack-apis-example/tree/advanced)
