@@ -1,16 +1,22 @@
 {
-  "name": "airstack-apis-example",
-  "version": "1.0.0",
-  "description": "starter code to interact with Airstack API",
-  "main": "index.js",
-  "scripts": {
-    "start":"npx tsc && node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "typescript": "^5.0.4"
-  }
+    "name": "airstack-apis-example",
+    "version": "1.0.0",
+    "description": "starter code to interact with Airstack API",
+    "main": "index.js",
+    "scripts": {
+        "start": "npx tsc && node dist/index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@graphql-codegen/cli": "^3.3.0",
+        "@graphql-codegen/typescript": "^3.0.3",
+        "typescript": "^5.0.4"
+    },
+    "dependencies": {
+        "@apollo/client": "^3.7.12",
+        "graphql": "^15.8.0"
+    }
 }
